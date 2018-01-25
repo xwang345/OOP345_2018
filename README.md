@@ -52,3 +52,10 @@ int x =10;
 int *ptr = &x;
 *ptr = 15;
 ```
+#### Pointer to Structure
+```c++
+StudentRecord *sptr;
+sptr = &stu;
+cout << "Name is" << sptr-> name;
+or cout << "Name is " << (*sptr).name;
+```
