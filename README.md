@@ -31,10 +31,9 @@
 
 #### C++ Data Types
 * There are 6 atomic data types:
-
-    ** Character (character, char);
-    ** Integer (integer, int, short, long, byte) with a variety of precisions;
-    ** Floating-point number (float, double, real, double precision);
-    ** Fixed-point number (fixed) with a variety of precisions and a programmer-selected scale.
-    ** Boolean, logical values true and false.
-    ** Reference (also called a pointer or handle), a small value referring to another object's address in memory, possibly a much larger one.
+**Character (character, char);
+**Integer (integer, int, short, long, byte) with a variety of precisions;
+**Floating-point number (float, double, real, double precision);
+**Fixed-point number (fixed) with a variety of precisions and a programmer-selected scale.
+**Boolean, logical values true and false.
+**Reference (also called a pointer or handle), a small value referring to another object's address in memory, possibly a much larger one.
