@@ -37,3 +37,11 @@
 4. Fixed-point number (fixed) with a variety of precisions and a programmer-selected scale.
 5. Boolean, logical values true and false.
 6. Reference (also called a pointer or handle), a small value referring to another object's address in memory, possibly a much larger one.
+
+#### C++: Statements
+
+#### C++: Arrays and Strings
+* Arrays indexed collections of identical-type objects.
+* Arrays index always start on 0
+* Arrays can be used in two differnt ways: primitive arrays and vectors
+* Arrys can be Single Dimensional or Multi-Dimentional.
