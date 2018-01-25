@@ -45,3 +45,10 @@
 * Arrays index always start on 0
 * Arrays can be used in two differnt ways: primitive arrays and vectors
 * Arrys can be Single Dimensional or Multi-Dimentional.
+
+#### C++: Pointers Cont'd
+``` c++
+int x =10;
+int *ptr = &x;
+*ptr = 15;
+```
