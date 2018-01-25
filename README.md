@@ -18,3 +18,7 @@
 
 #### Method signature
 
+#### Polymorphism
+* Means that the same method will behave differetly when it is applied to the objects of different class.
+* It also means that different methods associated with different classes can interpert the same message in different way.
+* E.X: an object can send message PRINT to several object, and each one will use it's own PRINT method to execute the message.
