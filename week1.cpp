@@ -23,6 +23,21 @@ ostream & form(ostream& output)
 	return output;
 }
 
+//Function defined to add the values using Bitwise AND and XOR.
+int add(
+	int x, int y) {
+	int carry;
+	while (y != 0)
+	{
+		carry = x & y;
+		x = x^y;
+		y = carry << 1;
+		// cout << "Y = " << y << endl;
+	}
+	return x;
+}
+
+
 struct student {
 	char name[50];
 	int stid;
@@ -67,7 +82,7 @@ int main()
 
 	cout << "Enter information of students: " << endl;
 	// Storing information
-	for (int i = 0; i < 10; ++i) {
+	/*for (int i = 0; i < 10; ++i) {
 		s[i].stid = i + 1;
 		cout << "For Student ID: " << s[i].stid << "," << endl;
 		cout << "Enter Student Name: ";
@@ -83,6 +98,34 @@ int main()
 		cout << "\n Student ID: " << i + 1 << endl;
 		cout << "Student Name: " << s[i].name << endl;
 		cout << "Student Marks: " << s[i].marks << endl;
-	}
+	}*/
+
+	/*int a = 9, b = 8;
+	cout << (a << 1) << "This is test"<< endl;
+	int x, y;
+	cout << "Enter the number to add: ";
+	cin >> x >> y;
+	cout << "The Result is: " << add(x, y);
+	cout << endl << endl;*/
+
+	//---------------------------------------------------------------
+
+	int a = 10;
+	int b = 1;
+	int c = 2;
+
+	cout << (a << 6) << endl;
+
+	cout << ((a << b) + c) << endl;
+
+	cout << (a + (c ? b : c)) << endl;
+	
+	/*<< 是左移符号  就是 左边那个数 a 乘以  2 的 b 次方
+	你给的例子：
+ 	(a<<b)  == 20     （10* 2^1）
+ 	(a<<b) + c ==  22   (10* 2^1 + 2)
+ 	a + (c?b:c)  == 11
+
+	最后一个是唯一一个三元操作符*/
 	return 0;
 }
