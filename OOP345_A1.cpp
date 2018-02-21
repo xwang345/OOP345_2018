@@ -56,6 +56,42 @@ int main()
 	return 0;
 }*/
 
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+void change(int m)
+{
+	int k = 0, a[30], b[30];
+	int c = 0;
+	for (int i = 0, length = sizeof(m) + 1; i < length; ++i) {
+		while (m != 0) {
+			a[k] = m % 8;
+			k++;
+			m = m / 8;
+		}
+
+	}
+
+	cout << "The decimal number m is equal ";
+
+	for (int i = k - 1; i >= 0; i--) {
+		cout << a[i];
+	}
+
+	cout << " in Otcal number" << endl;
+}
+
+int main() {
+	int m;
+	cout << "Please enter a decimal number: ";
+	cin >> m;
+	change(m);
+	system("pause");
+	return 0;
+}
+
 
 //---------------------------------
 
@@ -193,7 +229,7 @@ int main() {
 #include<algorithm>
 #include <iomanip>
 
-#define N 100
+#define N 10
 
 struct items {
 	int id;
@@ -204,7 +240,7 @@ struct items {
 };
 
 items item[N] = { 0, 0, 0, 0 };
-int count = 0, temp;
+int count = 0;
 
 void addItem();
 void listItem();
@@ -245,7 +281,6 @@ void main() {
 void addItem() {
 	char str;
 	for (int i = 0; i < N; i++) {
-		std::cout << "Please enter Sr.No., Item Code, Quantity, Price" << std::endl;
 		std::cout << "Please enter Sr.No. ";
 		std::cin >> item[i].id;
 		std::cout << "Please enter Item Code: ";
@@ -259,6 +294,7 @@ void addItem() {
 		std::cout << "Do you want add more? (y/n)" << std::endl;
 		std::cin >> str;
 		if (str == 'n') {
+			std::cin.ignore();
 			break;
 		}
 	}
@@ -278,17 +314,14 @@ void listItem() {
 		      << std::setw(10) << std::left << "=====" 
 			  << std::setw(10) << std::left<< "======" 
 			  << std::setw(10) << std::left << std::endl;
-	for (int i = 0; i < count; i++) {
-
+	for (int i = 0; i < count; ++i) {
 		std::cout << std::setw(10) << std::left << item[i].id
 			<< std::setw(10) << std::left << item[i].item_code
 			<< std::setw(10) << std::left << item[i].quantity
-			<< std::setw(6) << std::right << item[i].price;
-			std::cout.precision(3);
-			std::cout << std::setw(6) << std::right << item[i].total_price << std::endl;
+			<< std::setw(5) << std::right << item[i].price;
+			std::cout << std::fixed << std::setw(11) << std::right << std::setprecision(3) << item[i].total_price << std::endl;
+
 	}
 	std::cout << "***************************************************" << std::endl;
 	system("pause");
-	getchar();
 }
-
