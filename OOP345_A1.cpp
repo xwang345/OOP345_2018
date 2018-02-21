@@ -184,4 +184,110 @@ int main() {
 
 //-------------------------------------------------------
 
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+
+#include"stdafx.h"
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+#include <iomanip>
+
+#define N 100
+
+struct items {
+	int id;
+	int item_code;
+	float price;
+	int quantity;
+	float total_price;
+};
+
+items item[N] = { 0, 0, 0, 0 };
+int count = 0, temp;
+
+void addItem();
+void listItem();
+
+void MenuMain() {
+	system("cls"); //clean screen
+	std::cout << "=============== Welcome to items managment system ===============" << std::endl;
+	std::cout << "                1. Add Item                                      " << std::endl;
+	std::cout << "                2. List Item                                     " << std::endl;
+	std::cout << "                3. Exit                                          " << std::endl;
+	std::cout << "=================================================================" << std::endl;
+	std::cout << "Please choose the option: ";
+}
+
+void main() {
+	int options;
+	for (;;) {
+		MenuMain();
+		std::cin >> options;
+		switch (options)
+		{
+			case 1: {
+				addItem();
+				break;
+			}
+			case 2: {
+				listItem();
+				break;
+			}
+			case 3: {
+				std::cout << "Thanks fo using!!!" << std::endl;
+				return;
+			}
+		}
+	}
+}
+
+void addItem() {
+	char str;
+	for (int i = 0; i < N; i++) {
+		std::cout << "Please enter Sr.No., Item Code, Quantity, Price" << std::endl;
+		std::cout << "Please enter Item Code: " << std::endl;
+		std::cin >> item[i].id;
+		std::cout << "Please enter Quantity: " << std::endl;
+		std::cin >> item[i].quantity;
+		std::cout << "Please enter Price: " << std::endl;
+		std::cin >> item[i].price;
+		item[i].total_price = item[i].quantity * item[i].price;
+		count++;
+		std::cout << "Do you want add more? (y/n)" << std::endl;
+		std::cin >> str;
+		if (str == 'n') {
+			break;
+		}
+	}
+}
+
+void listItem() {
+	std::cout << "***************************************************" << std::endl;
+	std::cout << std::setw(10) << std::left << "Sr. No." 
+			  << std::setw(10) << std::left << "Item Code" 
+			  << std::setw(10) << std::left<< "Quantity"
+			  << std::setw(10) << std::left << "Price" 
+			  << std::setw(10) << std::left<< "Amount" 
+			  << std::setw(10) << std::left << std::endl;
+	std::cout << std::setw(10) << std::left<< "=======" 
+			  << std::setw(10) << std::left<< "=========" 
+			  << std::setw(10) << std::left << "========"
+		      << std::setw(10) << std::left << "=====" 
+			  << std::setw(10) << std::left<< "======" 
+			  << std::setw(10) << std::left << std::endl;
+	for (int i = 0; i < count; i++) {
+
+		std::cout << std::setw(10) << std::left << item[i].id
+				 << std::setw(10) << std::left << item[i].item_code
+				 << std::setw(10) << std::left << item[i].quantity
+				 << std::setw(10) << std::left << item[i].price
+				 << std::setw(10) << std::left << item[i].total_price << std::endl;
+	}
+	std::cout << "***************************************************" << std::endl;
+	system("pause");
+	getchar();
+}
+
 
