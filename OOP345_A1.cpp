@@ -148,3 +148,4 @@ while(cin>>c){
     cout<<"1.Add student，2.Sort by ID，3.Serach by name，4.Exits"<<endl;;
 }
 }
+//https://wenku.baidu.com/view/af2daa9851e79b8968022659.html
