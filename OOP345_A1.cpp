@@ -183,7 +183,6 @@ int main() {
 //https://wenku.baidu.com/view/af2daa9851e79b8968022659.html
 
 //-------------------------------------------------------
-
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
 
@@ -247,11 +246,13 @@ void addItem() {
 	char str;
 	for (int i = 0; i < N; i++) {
 		std::cout << "Please enter Sr.No., Item Code, Quantity, Price" << std::endl;
-		std::cout << "Please enter Item Code: " << std::endl;
+		std::cout << "Please enter Sr.No. ";
 		std::cin >> item[i].id;
-		std::cout << "Please enter Quantity: " << std::endl;
+		std::cout << "Please enter Item Code: ";
+		std::cin >> item[i].item_code;
+		std::cout << "Please enter Quantity: ";
 		std::cin >> item[i].quantity;
-		std::cout << "Please enter Price: " << std::endl;
+		std::cout << "Please enter Price: ";
 		std::cin >> item[i].price;
 		item[i].total_price = item[i].quantity * item[i].price;
 		count++;
@@ -280,14 +281,14 @@ void listItem() {
 	for (int i = 0; i < count; i++) {
 
 		std::cout << std::setw(10) << std::left << item[i].id
-				 << std::setw(10) << std::left << item[i].item_code
-				 << std::setw(10) << std::left << item[i].quantity
-				 << std::setw(10) << std::left << item[i].price
-				 << std::setw(10) << std::left << item[i].total_price << std::endl;
+			<< std::setw(10) << std::left << item[i].item_code
+			<< std::setw(10) << std::left << item[i].quantity
+			<< std::setw(6) << std::right << item[i].price;
+			std::cout.precision(3);
+			std::cout << std::setw(6) << std::right << item[i].total_price << std::endl;
 	}
 	std::cout << "***************************************************" << std::endl;
 	system("pause");
 	getchar();
 }
-
 
