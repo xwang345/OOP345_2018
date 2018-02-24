@@ -1,7 +1,7 @@
-#include <iostream>
+include <iostream>
 
 
-/*enum Day
+enum Day
 {
 	Saturday, 
 	Sunday=0, 
@@ -64,7 +64,7 @@ int main() {
 	return 0;
 
 }
-*/
+
 // other example of using enum
 
 int main() {
@@ -85,16 +85,26 @@ int main() {
 
 	switch (day) {
 	case mon:
-		std::cout << "Today have to work." << std::endl;
+	    std::cout << "Today have to work." << std::endl;
+		break;
 	case tue:
+	    std::cout << "Today have to work." << std::endl;
+		break;
 	case wed:
+	    std::cout << "Today have to work." << std::endl;
+		break;
 	case thu:
+	    std::cout << "Today have to work." << std::endl;
+		break;
 	case fri:
-	case sun:
-		std::cout << "Today have no work." << std::endl;
+	    std::cout << "Today have to work." << std::endl;
 		break;
 	case sat:
-		break;
+		std::cout << "Today have no work." << std::endl;
+	    break;
+	case sun:
+	    std::cout << "Today have no work." << std::endl;
+	    break;
 	default:
 		std::cout << "enter error" << std::endl;
 	}
