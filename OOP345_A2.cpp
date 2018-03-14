@@ -67,6 +67,14 @@ int main(int argc, char *argv[]){
 
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
 #include <iostream>
 #include <cstring>
 #include <exception>
@@ -87,7 +95,7 @@ public:
 		cout << "Enter the amount in Canada Dollar you want to covert to euro." << endl;
 		cin >> amountC;
 		solveC = amountC * rateC;
-		cout << solveC << "Euro." << endl;
+		cout << solveC << " Euro." << endl;
 	};
 
 private:
@@ -111,7 +119,7 @@ public:
 		cout << "Enter the amount in Euro you want to covert to Canada Dollar." << endl;
 		cin >> amountE;
 		solveE = amountE * rateE;
-		cout << solveE << "Canada Dollar." << endl;
+		cout << solveE << " Canada Dollar." << endl;
 	}
 
 private:
@@ -159,4 +167,3 @@ int main() {
 
 	return 0;
 }
-
