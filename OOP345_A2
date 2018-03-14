@@ -4,6 +4,7 @@ using namespace std;
 class Radius
 {
 	friend class Circle;   //declare Circle is Radius friend class
+	friend class Sphere;
 	friend void Show_r(Radius &n);     //declare Show_r is friend function
 
 public:
@@ -43,17 +44,22 @@ class Sphere{
     
     double volume(Radius a){
         s = a.r * a.r * a.r *3.1415926 * 4/3;
+        return s;
     }
     private:
-    double s
-}
+    double s;
+};
 
 int main(int argc, char *argv[]){
 	Radius objRadius(9);
 	Circle objCircle;
+	Sphere objSphere;
+	
 
 	Show_r(objRadius);
+	
 	cout << "Circle area is：" << objCircle.area(objRadius) << endl;
+	cout << "Sphere volume is: " << objSphere.volume(objRadius) << endl;
 
 	return 0;
 }
