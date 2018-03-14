@@ -63,3 +63,87 @@ int main(int argc, char *argv[]){
 
 	return 0;
 }
+//----------------------------------------------------------------------
+
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+class CanadaDollar {
+public:
+
+	CanadaDollar() {
+		rateC = 0.01;
+		solveC = 0;
+		amountC = 0;
+	};
+	~CanadaDollar() {
+
+	};
+	void CanadaDollar1() {
+		cout << "Enter the amount in Canada Dollar you want to covert to euro." << endl;
+		cin >> amountC;
+		solveC = amountC * rateC;
+		cout << solveC << "Euro." << endl;
+	};
+
+private:
+	double solveC;
+	double rateC;
+	double amountC;
+};
+
+class Euro {
+public:
+
+	Euro() {
+		rateE = 0.02;
+		solveE = 0;
+		amountE = 0;
+	};
+	~Euro() {
+
+	};
+	void Euro1() {
+		cout << "Enter the amount in Euro you want to covert to Canada Dollar." << endl;
+		cin >> amountE;
+		solveE = amountE * rateE;
+		cout << solveE << "Canada Dollar." << endl;
+	}
+
+private:
+	double solveE;
+	double rateE;
+	double amountE;
+};
+
+
+
+
+
+
+int main() {
+	int choice;
+	Euro euroMoney;
+	CanadaDollar canadaMoney;
+	cout << "What currency do you have? " << endl;
+	cout << "Euro(1)? Canadian Dollar(2)" << endl;
+	cin >> choice;
+	if (choice == 1) {
+		Euro();
+		system("pause");
+	}
+	else if (choice == 2) {
+		CanadaDollar();
+		system("pause");
+	}
+	else {
+		cout << "Not a valid choice.Please enter again." << endl;
+	}
+
+	return 0;
+}
