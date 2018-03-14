@@ -70,7 +70,7 @@ int main(int argc, char *argv[]){
 #include "stdafx.h"
 #include <iostream>
 #include <cstring>
-
+#include <exception>
 using namespace std;
 
 class CanadaDollar {
@@ -121,6 +121,14 @@ private:
 	double amountE;
 };
 
+class myexception : public exception
+{
+	virtual const char* what() const throw()
+	{
+		return "My exception happened";
+	}
+} myex;
+
 
 
 
@@ -133,12 +141,20 @@ int main() {
 	cout << "What currency do you have? " << endl;
 	cout << "Euro(1)? Canadian Dollar(2)" << endl;
 	cin >> choice;
+
+	try {
+
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+	}
+
 	if (choice == 1) {
-		Euro();
+		euroMoney.Euro1();
 		system("pause");
 	}
 	else if (choice == 2) {
-		CanadaDollar();
+		canadaMoney.CanadaDollar1();
 		system("pause");
 	}
 	else {
@@ -147,3 +163,4 @@ int main() {
 
 	return 0;
 }
+
