@@ -67,7 +67,6 @@ int main(int argc, char *argv[]){
 
 // ConsoleApplication1.cpp : Defines the entry point for the console application.
 //
-#include "stdafx.h"
 #include <iostream>
 #include <cstring>
 #include <exception>
@@ -125,13 +124,9 @@ class myexception : public exception
 {
 	virtual const char* what() const throw()
 	{
-		return "My exception happened";
+		return "Not a valid choice.Please enter again.";
 	}
 } myex;
-
-
-
-
 
 
 int main() {
@@ -142,12 +137,7 @@ int main() {
 	cout << "Euro(1)? Canadian Dollar(2)" << endl;
 	cin >> choice;
 
-	try {
-
-	}
-	catch (exception& e) {
-		cout << e.what() << endl;
-	}
+	
 
 	if (choice == 1) {
 		euroMoney.Euro1();
@@ -158,7 +148,13 @@ int main() {
 		system("pause");
 	}
 	else {
-		cout << "Not a valid choice.Please enter again." << endl;
+		try {
+			throw myex;
+		}
+		catch (exception& e) {
+			cout << e.what() << endl;
+		}
+		system("pause");
 	}
 
 	return 0;
