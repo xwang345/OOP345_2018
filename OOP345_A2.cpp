@@ -76,7 +76,7 @@ class CanadaDollar {
 public:
 
 	CanadaDollar() {
-		rateC = 0.01;
+		rateC = 0.62;
 		solveC = 0;
 		amountC = 0;
 	};
@@ -100,7 +100,7 @@ class Euro {
 public:
 
 	Euro() {
-		rateE = 0.02;
+		rateE = 1.60;
 		solveE = 0;
 		amountE = 0;
 	};
