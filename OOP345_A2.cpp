@@ -65,20 +65,7 @@ int main(int argc, char *argv[]){
 }
 //----------------------------------------------------------------------
 
-// ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
-/******************************************************************************
-
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-// ConsoleApplication1.cpp : Defines the entry point for the console application.
-//
-
 #include <iostream>
-#include <cstring>
 #include <exception>
 using namespace std;
 
@@ -97,10 +84,11 @@ public:
 		cout << "Enter the amount in Canada Dollar you want to covert to euro." << endl;
 		cin >> amountC;
 		solveC = amountC * rateC;
-		cout << endl << "*************************************" << endl;
-		cout << amountC << " Canadian Dollar is equal to " << solveC << " in Euro." << endl;
-		cout << "*************************************" << endl << endl << endl;
-		
+		cout << endl << "*****************************************" << endl;
+		cout << "**" << amountC << " Canadian Dollar is equal to " << solveC << " in Euro.**" << endl;
+		cout << "*****************************************" << endl << endl << endl << endl << endl;
+		system("pause");
+		system("CLS");
 	};
 
 private:
@@ -124,9 +112,11 @@ public:
 		cout << "Enter the amount in Euro you want to covert to Canada Dollar." << endl;
 		cin >> amountE;
 		solveE = amountE * rateE;
-		cout << endl << "*************************************" << endl;
-		cout << amountE << " Euro is equal " << solveE << " in Canada Dollar." << endl;
-		cout << "*************************************" << endl << endl << endl;
+		cout << endl << "*****************************************" << endl;
+		cout << "**" << amountE << " Euro is equal " << solveE << " in Canada Dollar.**" << endl;
+		cout << "*****************************************" << endl << endl << endl << endl << endl;
+		system("pause");
+		system("CLS");
 		
 	}
 
@@ -190,7 +180,5 @@ int main() {
 			
 		}
 	}
-		
-
 	return 0;
 }
