@@ -1,3 +1,11 @@
+//-----------------------------------------
+//            Student Name: Xiaochen Wang
+//            Student ID  : 015297153
+//            Professor   : Sukhbir Tatla
+//            Course Name : OOP345S1A
+//            Date        : 2018/3/14
+//-----------------------------------------
+
 #include <iostream>
 using namespace std;
 
