@@ -33,7 +33,6 @@ private:
 
 void Show_r(Radius &n) { // using referece value here.
 	cout << endl;
-	cout << "******************************************" << endl;
 	cout << "Circle's radius   : " << n.r << endl;    //call Radius prviate data member
 }
 
@@ -65,24 +64,32 @@ private:
 	double s;
 };
 
+
+
+void print(char* c) { // simple function overload here.
+	cout << "((((((((((((((((((((((((((((((((((((((((((" << endl;
+}
+
+void print(int i) {
+	cout << ")))))))))))))))))))))))))))))))))))))))))))" << endl;
+}
+
 int main(int argc, char *argv[]) {
 	Radius objRadius(9);
 	Circle objCircle;
 	Sphere objSphere;
 
-
+	print("ten");
 	Show_r(objRadius);
-
 	cout << "Circle's area     : " << objCircle.area(objRadius) << endl;
-	cout << "Sphere's volume is: " << objSphere.volume(objRadius) << endl;
-	cout << "******************************************" << endl;
-
+	cout << "Sphere's volume   : " << objSphere.volume(objRadius) << endl;
+	cout << endl;
+	print(1);
 
 	system("pause");
 
 	return 0;
 }
-
 // Question 2 end here.
 
 
@@ -91,6 +98,7 @@ int main(int argc, char *argv[]) {
 
 #include <iostream>
 #include <exception>
+
 using namespace std;
 
 class CanadaDollar {
@@ -108,9 +116,9 @@ public:
 		cout << "Enter the amount in Canada Dollar you want to covert to euro." << endl;
 		cin >> amountC;
 		solveC = amountC * rateC;
-		cout << endl << "*****************************************" << endl;
-		cout << "**" << amountC << " Canadian Dollar is equal to " << solveC << " in Euro.**" << endl;
-		cout << "*****************************************" << endl << endl << endl << endl << endl;
+		cout << endl << "****************************************************" << endl << endl;
+		cout << amountC << " Canadian Dollar is equal to " << solveC << " in Euro." << endl << endl;
+		cout << "****************************************************" << endl << endl << endl << endl << endl;
 		system("pause");
 		system("CLS");
 	};
@@ -136,12 +144,12 @@ public:
 		cout << "Enter the amount in Euro you want to covert to Canada Dollar." << endl;
 		cin >> amountE;
 		solveE = amountE * rateE;
-		cout << endl << "*****************************************" << endl;
-		cout << "**" << amountE << " Euro is equal " << solveE << " in Canada Dollar.**" << endl;
-		cout << "*****************************************" << endl << endl << endl << endl << endl;
+		cout << endl << "****************************************************" << endl << endl;
+		cout << amountE << " Euro is equal " << solveE << " in Canada Dollar." << endl << endl;
+		cout << "****************************************************" << endl << endl << endl << endl << endl;
 		system("pause");
 		system("CLS");
-		
+
 	}
 
 private:
@@ -164,7 +172,7 @@ void MenuMain() {
 	cout << "What currency do you have? " << endl;
 	cout << "(1)Euro" << endl;
 	cout << "(2)Canadian Dollar" << endl;
-	cout << "(3) Exit!!! bye..." << endl;
+	cout << "(3) Exit!!! bye..." << endl << endl;
 	cout << "*************************************" << endl;
 	cout << "Please type in number: ";
 }
@@ -175,33 +183,33 @@ int main() {
 	bool end = false;
 	Euro euroMoney;
 	CanadaDollar canadaMoney;
-	
-	
+
+
 	for (;;) {
 		MenuMain();
 		cin >> choice;
 		switch (choice) {
-			case 1: {
-				euroMoney.Euro1();
-				break;
+		case 1: {
+			euroMoney.Euro1();
+			break;
+		}
+		case 2: {
+			canadaMoney.CanadaDollar1();
+			break;
+		}
+		case 3: {
+			exit(0);
+		}
+		default: {
+			try {
+				throw myex;
 			}
-			case 2: {
-				canadaMoney.CanadaDollar1();
-				break;
+			catch (exception& e) {
+				cout << e.what() << endl;
 			}
-			case 3: {
-				exit(0);
-			}
-			default: {
-				try {
-					throw myex;
-				}
-				catch (exception& e) {
-					cout << e.what() << endl;
-				}
-				system("pause");
-			}
-			
+			system("pause");
+		}
+
 		}
 	}
 	return 0;
