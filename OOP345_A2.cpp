@@ -74,6 +74,8 @@ int main(int argc, char *argv[]){
 Write your code in this editor and press "Run" button to compile and execute it.
 
 *******************************************************************************/
+// ConsoleApplication1.cpp : Defines the entry point for the console application.
+//
 
 #include <iostream>
 #include <cstring>
@@ -89,13 +91,16 @@ public:
 		amountC = 0;
 	};
 	~CanadaDollar() {
-
+		cout << "Object is being deleted" << endl;
 	};
 	void CanadaDollar1() {
 		cout << "Enter the amount in Canada Dollar you want to covert to euro." << endl;
 		cin >> amountC;
 		solveC = amountC * rateC;
-		cout << solveC << " Euro." << endl;
+		cout << endl << "*************************************" << endl;
+		cout << amountC << " Canadian Dollar is equal to " << solveC << " in Euro." << endl;
+		cout << "*************************************" << endl << endl << endl;
+		
 	};
 
 private:
@@ -113,13 +118,16 @@ public:
 		amountE = 0;
 	};
 	~Euro() {
-
+		cout << "Object is being deleted" << endl;
 	};
 	void Euro1() {
 		cout << "Enter the amount in Euro you want to covert to Canada Dollar." << endl;
 		cin >> amountE;
 		solveE = amountE * rateE;
-		cout << solveE << " Canada Dollar." << endl;
+		cout << endl << "*************************************" << endl;
+		cout << amountE << " Euro is equal " << solveE << " in Canada Dollar." << endl;
+		cout << "*************************************" << endl << endl << endl;
+		
 	}
 
 private:
@@ -132,38 +140,57 @@ class myexception : public exception
 {
 	virtual const char* what() const throw()
 	{
+		system("CLS");
 		return "Not a valid choice.Please enter again.";
 	}
 } myex;
 
+void MenuMain() {
+	cout << "*************************************" << endl << endl;
+	cout << "What currency do you have? " << endl;
+	cout << "(1)Euro" << endl;
+	cout << "(2)Canadian Dollar" << endl;
+	cout << "(3) Exit!!! bye..." << endl;
+	cout << "*************************************" << endl;
+	cout << "Please type in number: ";
+}
+
 
 int main() {
 	int choice;
+	bool end = false;
 	Euro euroMoney;
 	CanadaDollar canadaMoney;
-	cout << "What currency do you have? " << endl;
-	cout << "Euro(1)? Canadian Dollar(2)" << endl;
-	cin >> choice;
-
 	
-
-	if (choice == 1) {
-		euroMoney.Euro1();
-		system("pause");
-	}
-	else if (choice == 2) {
-		canadaMoney.CanadaDollar1();
-		system("pause");
-	}
-	else {
-		try {
-			throw myex;
+	
+	for (;;) {
+		MenuMain();
+		cin >> choice;
+		switch (choice) {
+			case 1: {
+				euroMoney.Euro1();
+				break;
+			}
+			case 2: {
+				canadaMoney.CanadaDollar1();
+				break;
+			}
+			case 3: {
+				exit(0);
+			}
+			default: {
+				try {
+					throw myex;
+				}
+				catch (exception& e) {
+					cout << e.what() << endl;
+				}
+				system("pause");
+			}
+			
 		}
-		catch (exception& e) {
-			cout << e.what() << endl;
-		}
-		system("pause");
 	}
+		
 
 	return 0;
 }
