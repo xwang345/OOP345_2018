@@ -22,6 +22,7 @@ public:
 	Radius(int x) {
 		r = x;
 	}
+
 	~Radius() {
 
 	}
@@ -30,11 +31,12 @@ private:
 	int r;
 };
 
-void Show_r(Radius &n) {
+void Show_r(Radius &n) { // using referece value here.
 	cout << endl;
 	cout << "******************************************" << endl;
 	cout << "Circle's radius   : " << n.r << endl;    //call Radius prviate data member
 }
+
 
 class Circle {
 public:
