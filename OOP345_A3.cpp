@@ -1,3 +1,7 @@
+//OOP345_A3
+// Student Name: Xiaochen Wang; Student ID:015297153
+
+//Q1:
 #include <iostream>
 using namespace std;
 
@@ -91,256 +95,202 @@ int main()
 //-------------------------
 
 
-#include <iostream>  
-using namespace std;  
-  
-struct Node  
-{  
-    int data;  
-    struct Node* next;  
-};  
-  
-class List  
-{  
-    Node* head;  
-public:  
-    List() { head = NULL;}  
-    void Print();  
-    int GetSize();  
-    void Append(int addData);  
-    void EraseOne(int eraseData);  
-    void EraseOne_V2(int eraseData);  
-};  
-  
-void List::Print()  
-{  
-    Node* tmp = head;  
-  
-    //list is empty  
-    if (tmp == NULL)  
-    {  
-        cout << "Empty List!\n";  
-        return;  
-    }  
-  
-    //list is not empty  
-    for(; tmp != NULL; tmp = tmp->next)  
-    {  
-        cout << tmp->data << " --> ";  
-    }  
-    cout << "NULL\n";  
-}  
-  
-int List::GetSize()  
-{  
-    Node* tmp = head;  
-  
-    //list is empty  
-    if(tmp == NULL)  
-    {  
-        return 0;  
-    }  
-  
-    //list is not empty  
-    int num(0);  
-    for(; tmp != NULL; tmp = tmp->next)  
-    {  
-        ++num;  
-    }  
-    return num;  
-}  
-  
-void List::Append(int addData)  
-{  
-    //create a new node  
-    Node* newNode = new Node;  
-    newNode->data = addData;  
-    newNode->next = NULL;  
-  
-    Node* tmp = head;  
-  
-    //list is empty  
-    if(tmp == NULL)  
-    {  
-        head = newNode; //有可能引入重复释放指针的问题，可以使用智能指针。  
-        return;  
-    }  
-  
-    //list is not empty, locate the last node  
-    for(; tmp->next != NULL; tmp = tmp->next)  
-    {  
-    }  
-  
-    tmp->next = newNode;  
-  
-}  
-  
-void List::EraseOne_V2(int eraseData)  
-{  
-    Node* tmp = head;  
-  
-    //空链表  
-    if (tmp == NULL)  
-    {  
-        return;  
-    }  
-  
-    //只有一个节点的链表  
-    if (tmp->next == NULL)  
-    {  
-        if (tmp->data == eraseData)  
-        {  
-            delete tmp;  
-            head = NULL;  
-        }  
-        return;  
-    }  
-  
-    //有两个及以上节点的链表，待删节点正是首节点  
-    if (tmp->data == eraseData)  
-    {  
-        head = head->next;  
-        delete tmp;  
-        tmp = NULL;  
-    }  
-  
-    //有两个及以上节点的链表，待删节点不是首节点  
-    for (; tmp != NULL; tmp = tmp->next)  
-    {  
-        if ((tmp->next != NULL)  &&  (tmp->next->data == eraseData)) //找到待删节点的前一个节点  
-        {  
-            Node* tmp2 = tmp->next;  
-            tmp->next = tmp->next->next;  
-            delete tmp2;  
-            break;  
-        }  
-    }  
-}  
-  
-void List::EraseOne(int eraseData)  
-{  
-    Node* tmp = head;  
-  
-    ////////////////////  
-    //list is empty  
-    ////////////////////  
-    if(tmp == NULL)  
-    {  
-        return;  
-    }  
-  
-    ////////////////////  
-    //list is not empty  
-    ////////////////////  
-    int locate(-1), idx(0);  
-    for(; tmp != NULL; tmp = tmp->next)  
-    {  
-        ++idx;  
-        if(tmp->data == eraseData)  
-        {  
-            locate = idx - 1;  
-            break;  
-        }  
-    }  
-  
-    if(locate == -1) // eraseData not found  
-    {  
-        return;  
-    }  
-  
-    int listSize = GetSize();  
-  
-    if(listSize == 1) // only one node in the list  
-    {  
-        delete head;  
-        head = NULL;  
-    }  
-    else // more than one node in the list  
-    {  
-        // eraseData is the 0th node  
-        if(locate == 0)  
-        {  
-            tmp = head;  
-            head = head->next;  
-            delete tmp; //注意这里释放tmp（并没有用new申请空间给tmp)的空间是可行的，我的理解是因为tmp是结构体指针（相对于基本数据类型指针）。但是不能重复释放。  
-            tmp = NULL;  
-        }  
-  
-        //eraseNode is the last node  
-        if(locate == listSize - 1)  
-        {  
-            tmp = head;  
-            int idx(0);  
-            for(; tmp != NULL; tmp = tmp->next)  
-            {  
-                ++idx;  
-                if(idx == locate - 1)  
-                {  
-                    Node* toDel = tmp->next;  
-                    tmp->next = NULL;  
-                    delete toDel;  
-                }  
-            }  
-        }  
-  
-        // eraseData is intermediate node  
-        if(locate > 0  &&  locate < listSize - 1)  
-        {  
-            tmp = head;  
-            int idx(0);  
-            for(; tmp != NULL; tmp = tmp->next)  
-            {  
-                ++idx;  
-                if(idx == locate - 1)  
-                {  
-                    Node* toDel = tmp->next;  
-                    tmp->next = tmp->next->next;  
-                    delete toDel;  
-                }  
-            }  
-        }  
-    } // more than one node in the list  
-}  
-  
-  
-int main (int argc, char** argv)  
-{  
-      // New list  
-        List list;  
-        list.Print();  
-  
-        list.EraseOne_V2(100);  
-  
-        list.Append(2);  
-        list.Print();  
-        list.EraseOne_V2(2);  
-        list.Print();  
-  
-        // Append nodes to the list  
-        list.Append(100);  
-        list.Print();  
-        list.Append(200);  
-        list.Print();  
-        list.Append(300);  
-        list.Print();  
-        list.Append(300);  
-        list.Print();  
-        list.Append(500);  
-        list.Print();  
-  
-        // Delete nodes from the list  
-        list.EraseOne_V2(400);  
-        list.Print();  
-        list.EraseOne_V2(100);  
-        list.Print();  
-        list.EraseOne_V2(200);  
-        list.Print();  
-        list.EraseOne_V2(500);  
-        list.Print();  
-        list.EraseOne_V2(100);  
-        list.Print();  
-        list.EraseOne_V2(300);  
-        list.Print();  
-  
-        return 0;  
-}  
+//Q2
+#include <iostream>
+#include <stdlib.h>  
+using namespace std;
+
+class Node {
+public:
+	int data;
+	Node *pNext;
+};
+
+
+class LinkList {
+public:
+	LinkList() {
+
+		head = new Node;
+		head->data = 0;
+		head->pNext = NULL;
+	}
+	~LinkList() { delete head; }
+	void CreateLinkList(int n);             //create Linked list  
+	void InsertNode(int position, int d);   //insert node 
+	void TraverseLinkList();                //go through linked list 
+	bool IsEmpty();                         //check
+	int GetLength();                        //length of linked list 
+	void DeleteNode(int position);          //delete linked list
+	void DeleteLinkList();                  //Delete whole linked list
+	int Find(int number);
+private:
+	Node *head;
+};
+
+void LinkList::CreateLinkList(int n) {
+	if (n < 0) {
+		cout << "Enter a worry Link list number: " << endl;
+		exit(EXIT_FAILURE);
+	}
+	else {
+		Node *pnew, *ptemp;
+		ptemp = head;
+		int i = n;
+		while (n-- > 0) {
+			pnew = new Node;
+			cout << "Enter " << i - n << " link list number: ";
+			cin >> pnew->data;
+			pnew->pNext = NULL;
+			ptemp->pNext = pnew;
+			ptemp = pnew;
+		}
+	}
+}
+//node counts from 1 and adds 1 to the length of the list. The node after the head node is called the first node.
+void LinkList::InsertNode(int position, int d) {
+	if (position < 0 || position > GetLength() + 1) {
+		throw  "this is node error！";
+		exit(EXIT_FAILURE);
+	}
+	else {
+		Node *pnew, *ptemp;
+		ptemp = head;
+		pnew = new Node;
+		pnew->data = d;
+		pnew->pNext = NULL;
+
+		while (position-- > 1) {
+			ptemp = ptemp->pNext;
+		}
+		pnew->pNext = ptemp->pNext;
+		ptemp->pNext = pnew;
+	}
+}
+
+void LinkList::TraverseLinkList() {
+	Node *p = head->pNext;
+	while (p != NULL) {
+		cout << p->data << " ";
+		p = p->pNext;
+	}
+	cout << endl;
+}
+
+bool LinkList::IsEmpty() {
+	if (head->pNext == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+}
+
+int LinkList::GetLength() {
+	Node *p = head->pNext;
+	int n = 0;
+	while (p != NULL) {
+		n++;
+		p = p->pNext;
+	}
+	return n;
+}
+
+void LinkList::DeleteNode(int position) {
+	if (position < 0 || position > GetLength()) {
+		cout << "this is node error！" << endl;
+		exit(EXIT_FAILURE);
+	}
+	else {
+		Node *ptemp = head, *pdelete;
+		while (position-- > 1)
+			ptemp = ptemp->pNext;
+		pdelete = ptemp->pNext;
+		ptemp->pNext = pdelete->pNext;
+		delete pdelete;
+		pdelete = NULL;
+	}
+}
+
+void LinkList::DeleteLinkList() {
+	Node *pdelete = head->pNext, *ptemp;
+	while (pdelete != NULL) {
+		ptemp = pdelete->pNext;
+		head->pNext = ptemp;
+		delete pdelete;
+		pdelete = ptemp;
+	}
+}
+
+int LinkList::Find(int number) {
+	Node *p = head->pNext;
+	int res = 1;
+	while (p != NULL)
+	{
+		if (p->data == number)
+			return res;
+	}
+	return -1;//return -1 if not found
+}
+
+// Here is main file
+int main() {
+	LinkList Link;
+	int position = 0, value = 0, n = 0, b=0;
+	bool flag = false;
+	int findNumber = 0;
+
+	cout << "please size of linked list: ";
+	cin >> n;
+	Link.CreateLinkList(n);
+
+	cout << "Print linked list: ";
+	Link.TraverseLinkList();
+
+	cout << "Please enter the node of the linked list that you want to insert: ";
+	cin >> position;
+	cout << "Value: ";
+	cin >> value;
+	try {
+		Link.InsertNode(position, value);
+	}
+	catch (const char* msg) {
+		cerr << msg << endl;
+	}
+
+
+	cout << "Print linked list: ";
+	Link.TraverseLinkList();
+
+	cout << "Please enter which node that you want to delete: ";
+	cin >> position;
+	Link.DeleteNode(position);
+
+	cout << "Print linked list: ";
+	Link.TraverseLinkList();
+
+	Link.DeleteLinkList();
+	flag = Link.IsEmpty();
+	if (flag) {
+		cout << "Delete success!" << endl << endl << endl;
+	}
+	else {
+		cout << "Delete failed!" << endl << endl << endl;
+	}
+
+	cout << "Please enter a number that you want to be search: ";
+	cin >> findNumber;
+
+	b = Link.Find(findNumber);
+	if (Link.Find(findNumber) == 1) {
+		cout << "it is found" << endl;
+	}
+	else {
+		cout << "it is not found" << endl;
+	}
+
+	system("pause");
+
+	return 0;
+}
