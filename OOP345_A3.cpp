@@ -5,10 +5,10 @@
 #include <iostream>
 using namespace std;
 
-template<typename T>
-void bubble_sort(T arr[], int len)
+
+void bubble_sort(int arr[], int len)
 {
-	int i, j;  T temp;
+	int i, j, temp;
 	for (i = 0; i < len - 1; i++)
 		for (j = 0; j < len - 1 - i; j++)
 			if (arr[j] > arr[j + 1])
@@ -21,8 +21,8 @@ void bubble_sort(T arr[], int len)
 
 
 void save(int arr[], int len) {
-	int arr1[len];
-	int arr2[len];
+	int* arr1 = new int[len];
+	int* arr2 = new int[len];
 
 	for (int i = 0; i < len; i++) {
 		arr1[i] = arr[i];
@@ -36,54 +36,57 @@ void save(int arr[], int len) {
 
 int main()
 {
+	int front;
+	int end;
+	int mid;
 	int sizeOfArrayTemp;
 	int userNum;
 	int searchNum;
-	cout << "please enter size of array: " << endl;
-	cin >> sizeOfArrayTemp;
+	std::cout << "please enter size of array: " << endl;
+	std::cin >> sizeOfArrayTemp;
 
-	int sizeOfArray = sizeOfArrayTemp;
-	int unsortedNumbers[sizeOfArray];
+	static const int sizeOfArray = sizeOfArrayTemp;
 
-	cout << "please enter number to array" << endl;
+	int* unsortedNumbers = new int[sizeOfArray];
+
+	std::cout << "please enter number to array" << endl;
 
 	for (int i = 0; i < sizeOfArray; i++) {
-		cin >> unsortedNumbers[i];
+		std::cin >> unsortedNumbers[i];
 	}
 
 
-	int len = (int) sizeof(unsortedNumbers) / sizeof(*unsortedNumbers);
-
+	int len = sizeof(unsortedNumbers)+1;
+	cout << len << "------------";
 	bubble_sort(unsortedNumbers, len);
 
 	cout << "After using the Bubble sort to sort number: ";
 	for (int i = 0; i < len; i++)
-		cout << unsortedNumbers[i] << ' ';
-		
-	cout << endl << endl;
-	cout << "The Minimum Number is: " << unsortedNumbers[0] << endl;
-	cout << "The Maxinum Number is: " << unsortedNumbers[len-1] << endl;
+		std::cout << unsortedNumbers[i] << ' ';
+
+
 	save(unsortedNumbers, len);
 
-	int front;
-	int end;
-	int mid;
-	
-     cout<<"Please enter a search number:"<<endl;
-     cin>>searchNum;
-     front=0;
-     end=len-1;
-     mid=(front+end)/2;
-     while(front<end&&unsortedNumbers[mid]!=searchNum)
-     {
-        if(unsortedNumbers[mid]<searchNum)front=mid+1;
-        if(unsortedNumbers[mid]>searchNum)end=mid-1;
-        mid=(front+end)/2;
-     }
-     if(unsortedNumbers[mid]!=searchNum)
-          printf("It's Not Foud！\n");
-     else
-          printf("It's Foud",mid+1);
+	std::cout << endl << endl;
+	std::cout << "The Minimum Number is: " << unsortedNumbers[0] << endl;
+	std::cout << "The Maxinum Number is: " << unsortedNumbers[len-1] << endl;
+
+
+	std::cout << "Please enter a search number:" << endl;
+	std::cin >> searchNum;
+	front = 0;
+	end = len;
+	mid = (front + end) / 2;
+	while (front<end&&unsortedNumbers[mid] != searchNum)
+	{
+		if (unsortedNumbers[mid]<searchNum)front = mid + 1;
+		if (unsortedNumbers[mid]>searchNum)end = mid - 1;
+		mid = (front + end) / 2;
+	}
+	if (unsortedNumbers[mid] != searchNum)
+		printf("It's Not Foud！\n");
+	else
+		printf("It's Foud!\n");
 
 	system("pause");
 	return 0;
