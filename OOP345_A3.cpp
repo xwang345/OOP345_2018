@@ -57,8 +57,8 @@ int main()
 	}
 
 
-	int len = sizeof(unsortedNumbers)+1;
-	cout << len << "------------";
+	int len = (int) sizeof(unsortedNumbers) / sizeof(*unsortedNumbers);
+	cout <<"The Size of array is " << len << endl;
 	bubble_sort(unsortedNumbers, len);
 
 	cout << "After using the Bubble sort to sort number: ";
