@@ -1,15 +1,11 @@
-// OOP345A3.cpp : Defines the entry point for the console application.
-//
-
-
-#include "stdafx.h"
 #include <iostream>
 using namespace std;
 
-
-void bubble_sort(int arr[], int len)
+template<typename T>
+void bubble_sort(T arr[], int len)
 {
-	int i, j, temp;
+	int i, j;
+	T temp;
 	for (i = 0; i < len - 1; i++)
 		for (j = 0; j < len - 1 - i; j++)
 			if (arr[j] > arr[j + 1])
