@@ -339,3 +339,132 @@ int main () {
 
   return 0;
 }
+//Random Access File I/O in c++
+#include <iostream>
+#include <string>
+#include <limits>
+#include <fstream>
+#include <cstdlib>
+#include <iomanip>
+using namespace std;
+
+
+class hardwareData
+{
+public:
+
+    string getNameOfTools()
+    {
+        return nameOfTools;
+    }//end funtion getNameOfTools
+
+    void setNameOfTools (string nameOfToolsValue)
+    {
+        nameOfTools = nameOfToolsValue;
+    }//end function setNameOfTools
+
+    int getQtyOfTools()
+    {
+        return qtyOfTools;
+    }//end funtion getQtyOfTools
+
+    void setQtyOfTools (int qtyOfToolsValue)
+    {
+        qtyOfTools = qtyOfToolsValue;
+    }//end of function setQtyOfTools
+
+    double getCostOfTools()
+    {
+        return costOfTools;
+    }//end function getCostOfTools
+
+    void setCostOfTools (double costOfToolsValue)
+    {
+        costOfTools = costOfToolsValue;
+    }//end function setCostOfTools
+
+    int getRecNum()
+    {
+        return recNum;
+    }//end function getRecNum
+
+    void setRecNum (int recNumValue)
+    {
+        recNum = recNumValue;
+    }//end function setRecNum
+
+
+private:
+    string nameOfTools;
+    int qtyOfTools;
+    double costOfTools;
+    int recNum;
+};//end class hardwareData
+
+
+int main ()
+{
+    string nameOfTools;
+    int qtyOfTools;
+    double costOfTools;
+    int recNum;
+    int recsize = sizeof(string) + sizeof(int) + sizeof(double) + sizeof(int);
+
+    fstream outHardware("hardware.dat", ios::in | ios::out);
+
+//exit program if ofstream could not open file
+    if (!outHardware)
+    {
+        cerr << "File could not be opened." << endl;
+        exit (1);
+    }//end if
+
+    hardwareData hardware;
+
+
+    cout << "Enter Record Number. (Enter 0 to end input.)" << endl;
+    cin >> recNum;
+    cout << endl;
+
+
+
+    while (recNum > 0 && recNum <=100)
+    {
+        hardware.setRecNum(recNum);
+
+        cout << "Tool Name" << setw(15) << "Quantity" << setw(10)
+             << "Cost/Unit" << endl;
+
+        cin >> nameOfTools >> setw(14) >> qtyOfTools
+            >> setw(5) >> costOfTools;
+        cout << endl << endl;
+
+//setting the values of tool names, quantity, cost, and record number
+        hardware.setNameOfTools (nameOfTools);
+        hardware.setQtyOfTools (qtyOfTools);
+        hardware.setCostOfTools (costOfTools);
+
+//seek position in file of user-specified record
+        outHardware.seekp ( (hardware.getRecNum() -1) * sizeof (hardware));
+
+//write user-specified information in file
+        outHardware.write (reinterpret_cast<char*> (&nameOfTools),
+                           sizeof (string) );
+        outHardware.write (reinterpret_cast<char*> (&qtyOfTools),
+                           sizeof (int) );
+        outHardware.write (reinterpret_cast<char*> (&costOfTools),
+                           sizeof (double) );
+
+//enables the user to enter another item.
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Enter Record Number. (Enter 0 to end input.)" << endl;
+        cin >> recNum;
+    }//end while
+
+    outHardware.close();
+
+
+    return 0;
+}//end funtion main
+
